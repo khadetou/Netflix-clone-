@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Show login form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// Show Register form
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
+
+// Create new User
+Route::post('/users', [UserController::class, 'create_user']);
+
+// Log in user
+Route::post('/users/authenticate', [UserController::class, 'login_user']);
+
+// Log out user
+Route::post('/logout', [UserController::class, 'logout_user'])->middleware('auth');
