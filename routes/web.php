@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntityContorller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
@@ -15,9 +16,7 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EntityContorller::class, 'index']);
 
 // Show login form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
