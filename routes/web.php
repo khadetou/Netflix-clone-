@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\EntityContorller;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\EntityContorller;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use GuzzleHttp\Middleware;
 */
 
 Route::get('/', [EntityContorller::class, 'index']);
+
 
 // Show login form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
